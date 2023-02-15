@@ -1,0 +1,26 @@
+.auth-block {
+    min-width: 350px;
+    position: absolute;
+    border: solid #AAAAAA 1px;
+    padding: 70px;
+    border-radius: 50px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.auth-block h3{
+    font-size: 35px;
+    color: #DDDDDD;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-btn{
+    width: 50%;
+    position: relative;
+    margin-left: 25%;
+    margin-top: 25px;
+}
+

@@ -1,0 +1,41 @@
+@import "auth-block.css";
+@import "home.css";
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --btn-primary-color: #6e40c9;
+    --bg-color: #0d1117;
+    --font-color: #fff5f5;
+}
+
+.btn-primary{
+    background: var(--btn-primary-color);
+}
+
+html{
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    background: var(--bg-color);
+    width: inherit;
+    height: inherit;
+}
+
+.body-image{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.body-image img{
+    width: 100%;
+    height: auto;
+}
+
