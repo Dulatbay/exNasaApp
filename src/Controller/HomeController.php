@@ -19,8 +19,9 @@ class HomeController extends AbstractController
     #[Route('/')]
     public function index(NasaApi $api)
     {
-        $objs = ($api->getPictureOfDay());
+        $apods = $api->getPictureOfDay();
+        $roverPhotosTmp = (array_slice(array($api->getMarsPhotos()), 0, 3));
 
-        return $this->render('base.html.twig',  ['objs'=>$objs]);
+        return $this->render('base.html.twig',  ['apods'=>$apods]);
     }
 }
