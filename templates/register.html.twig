@@ -2,7 +2,14 @@
 {% block title %}
     Auth
 {% endblock %}
+
+{#
+
+TODO: make design like - https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home
+
+#}
 {% block body %}
+    <div class="auth-bg" style="background-image: url('/images/auth-bg.png')"></div>
     <div class="auth-block">
         <div class="auth-block__wrap">
             <h3>Let’s build from here</h3>
@@ -16,6 +23,7 @@
                     <label for="floatingInput">Password</label>
                 </div>
                 {{ form_end(form) }}
+            <div class="auth-block-redirect_button"><a href="{{ path('app_login') }}">Have an account?</a></div>
         </div>
     </div>
 {% endblock %}

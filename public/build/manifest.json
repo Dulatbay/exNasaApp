@@ -4,5 +4,7 @@
   "build/runtime.js": "http://localhost:8080/build/runtime.js",
   "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-75fcbc.js": "http://localhost:8080/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-75fcbc.js",
   "build/images/ground.png": "http://localhost:8080/build/images/ground.bdd34cc4.png",
-  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-514134.js": "http://localhost:8080/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-514134.js"
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-514134.js": "http://localhost:8080/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-514134.js",
+  "build/fonts/Georgia.ttf": "http://localhost:8080/build/fonts/Georgia.5b8bb278.ttf",
+  "build/fonts/georgia bold.ttf": "http://localhost:8080/build/fonts/georgia bold.a5fad24f.ttf"
 }

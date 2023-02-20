@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="auth-bg" style="background-image: url('/images/auth-bg.png')"></div>
+    <div class="auth-block">
+        <div class="auth-block__wrap">
+            <h3>Sign in</h3>
+            {% if error %}
+                <div class="mb-3">
+                    <div class="badge bg-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                </div>
+            {% endif %}
+            <form action="{{ path('app_login') }}" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" id="_email" name="_email" class="form-control" placeholder="Example@mail.ru">
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" id="_password" name="_password" class="form-control" placeholder="Password...">
+                    <label for="floatingInput">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary form-btn btn-lg">GO</button>
+                <input type="hidden" name="_target_path" value="{{ path("app_register") }}">
+            </form>
+            <div class="auth-block-redirect_button"><a href="{{ path('app_register') }}">No account?</a></div>
+        </div>
+    </div>
+{% endblock %}

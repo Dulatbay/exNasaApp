@@ -17,6 +17,11 @@ security:
     main:
       lazy: true
       provider: app_user_provider
+      form-login:
+        login_path: app_login
+        check_path: app_login
+        username_parameter: _email
+        password_parameter: _password;
 
 
       # activate different ways to authenticate

@@ -1,18 +1,20 @@
 .auth-block {
-    min-width: 350px;
+    width: 25vw;
     position: absolute;
-    border: solid #AAAAAA 1px;
+    border: solid rgba(170, 170, 170, 0.3) 1px;
     padding: 70px;
     border-radius: 50px;
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    background: rgba(46, 104, 189, 0.07);
 }
 
 .auth-block h3{
     font-size: 35px;
-    color: #DDDDDD;
+    font-weight: 700;
+    color: #010c17;
     text-align: center;
     margin-bottom: 40px;
 }
@@ -22,5 +24,26 @@
     position: relative;
     margin-left: 25%;
     margin-top: 25px;
+    background: rgba(48, 43, 208, 0.65);
 }
 
+
+.auth-bg{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    padding-bottom: 500px;
+}
+
+.auth-block-redirect_button{
+    text-align: center;
+    margin-top: 10px;
+
+}
+.auth-block-redirect_button a{
+    text-decoration: underline;
+    color: white;
+    opacity: 0.6;
+    font-size: 15px;
+}
