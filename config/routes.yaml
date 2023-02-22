@@ -7,4 +7,7 @@ kernel:
     type: annotation
 app_register:
     path: /register
-    controller: App\Controller\AuthController::register
+    controller: App\Controller\UserAuthSecurityController::register
+app_homepage:
+    path: /homepage
+    controller: App\Controller\HomeController::homepage

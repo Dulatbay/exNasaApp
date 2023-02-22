@@ -1,5 +1,6 @@
 .auth-block {
-    width: 25vw;
+    max-width: 25vw;
+    min-width: 450px;
     position: absolute;
     border: solid rgba(170, 170, 170, 0.3) 1px;
     padding: 70px;
