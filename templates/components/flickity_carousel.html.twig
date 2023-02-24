@@ -1,0 +1,50 @@
+
+
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<div class="rovers js-flickity"
+     data-flickity-options='{ "wrapAround": true }'>
+    <div class="rover">
+        <img src="/images/curiosity.jpg">
+    </div>
+    <div class="rover">
+        <img src="/images/spirit.jpg">
+    </div>
+    <div class="rover">
+        <img src="/images/opportunity.jpg">
+
+    </div>
+    <div class="rover">
+        <img src="/images/perseverance.jpg">
+
+    </div>
+</div>
+
+<style>
+
+    .rovers  {
+        margin-top: 50px;
+        background: var(--bg-color)
+    }
+
+    .rover {
+        width: 40vw;
+        height: 45vh;
+        margin-right: 20px;
+        background: #8C8;
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+    }
+
+
+
+
+    .rover img{
+        width: 100%;
+        background-size: cover;
+        border-radius: 20px;
+    }
+
+</style>

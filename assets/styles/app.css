@@ -23,7 +23,7 @@
 }
 
 body {
-    background-color: #010101;
+    background-color: var(--bg-color);
     font-family: 'Proxima Nova', 'system-ui';
     line-height: 1.55;
 }
@@ -149,3 +149,7 @@ body {
     font-size: calc(var(--index) * 0.75);
     letter-spacing: calc(var(--index) / 35);
 }
+
+
+
+

@@ -14,11 +14,13 @@
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
+
+
 </head>
 <body>
 {% block body %}
+    {{ include('components/flickity_carousel.html.twig') }}
 {% endblock %}
-{% block scripts %}
-{% endblock %}
+
 </body>
 </html>
