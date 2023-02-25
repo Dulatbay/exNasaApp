@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Rover;
 use App\Entity\User;
 use App\Form\Type\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;

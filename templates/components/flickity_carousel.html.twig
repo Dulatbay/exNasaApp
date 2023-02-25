@@ -1,47 +1,57 @@
-
-
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
 <div class="rovers js-flickity"
      data-flickity-options='{ "wrapAround": true }'>
     <div class="rover">
         <img src="/images/curiosity.jpg">
+        <div class="rover-description">
+
+        </div>
     </div>
-    <div class="rover">
+    <div class="rover" id="spirit">
         <img src="/images/spirit.jpg">
     </div>
-    <div class="rover">
+    <div class="rover" id="opportunity">
         <img src="/images/opportunity.jpg">
 
     </div>
-    <div class="rover">
+    <div class="rover" id="perseverance">
         <img src="/images/perseverance.jpg">
 
     </div>
 </div>
 
 <style>
-
-    .rovers  {
-        margin-top: 50px;
-        background: var(--bg-color)
+    .rovers {
+        width: 100vw;
+        height: 65vh;
+        margin-top: 10px;
+        background: var(--bg-color);
     }
 
     .rover {
-        width: 40vw;
-        height: 45vh;
+        padding: 55px;
+        width: 60vw;
+        height: inherit;
         margin-right: 20px;
-        background: #8C8;
         display: flex;
         justify-content: center;
         border-radius: 20px;
+
+    }
+
+    .rover.is-selected {
+        transform: scale(120%);
+    }
+
+    .rover.is-selected img {
+        box-shadow: rgba(255, 255, 255, 0.15) 0px 0px 15px;
+        transform: scale(120%);
+
     }
 
 
-
-
-    .rover img{
+    .rover img {
         width: 100%;
         background-size: cover;
         border-radius: 20px;

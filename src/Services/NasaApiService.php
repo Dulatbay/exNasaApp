@@ -10,11 +10,11 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class NasaApi
+class NasaApiService
 {
     private HttpClientInterface $httpClient;
-    // private string $api_key = 'vypQbfVJX694pYGvYeylkvdU7BcrZPmVg0n1mYfD';
-       private string $api_key = 'DEMO_KEY';
+    private string $api_key = 'vypQbfVJX694pYGvYeylkvdU7BcrZPmVg0n1mYfD';
+    //   private string $api_key = 'DEMO_KEY';
 
     public function __construct(HttpClientInterface $httpClient)
     {
@@ -46,8 +46,8 @@ class NasaApi
      * @throws ClientExceptionInterface
      */
     public function getAllRovers(){
-        $response = $this->httpClient->request('get', 'https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=' . $this->api_key);
-        return json_decode($response->getContent(),true);
+        $response = $this->httpClient->request('GET', 'https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=' . $this->api_key);
+        return json_decode($response->getContent(),true)["rovers"];
     }
 
 }

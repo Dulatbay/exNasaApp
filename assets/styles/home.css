@@ -1,6 +1,6 @@
 .carousel{
-    max-height: 400px;
-    max-width: 300px;
+    height: 300px;
+    width: 300px;
     color:  var(--font-color);
 }
 

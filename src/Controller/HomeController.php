@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
-use App\Services\NasaApi;
+use App\Services\DatabaseService;
+use App\Services\NasaApiService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,8 +22,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/homepage')]
-    public function homepage(NasaApi $api): Response
+    public function homepage(NasaApiService $nasaApiService, EntityManagerInterface $em, DatabaseService $databaseService): Response
     {
+
+        // TODO: $values = $nasaApiService->getAllRovers();
+
+        $values = json_decode(file_get_contents("C:\\Users\\Dulat\\Documents\\GitHub\\exNasaApp\\values.json"), true)["rovers"];
+
+        $databaseService->updateDatabase($values, $em);
         return $this->render("base.html.twig");
 
     }
