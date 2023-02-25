@@ -38,7 +38,12 @@ class RoverCameraRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findAllWithArray()
+    {
+        $rover = $this->find(20);
 
+        return $rover->getRoverId();
+    }
 //    /**
 //     * @return RoverCamera[] Returns an array of RoverCamera objects
 //     */

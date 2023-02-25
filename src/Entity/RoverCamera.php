@@ -12,16 +12,16 @@ class RoverCamera
 {
     #[ORM\Id]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    public ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Rover::class, mappedBy: 'roverCameras',cascade: ["persist"])]
-    private Collection $rover_id;
+    public Collection $rover_id;
 
     #[ORM\Column(length: 255)]
-    private ?string $full_name = null;
+    public ?string $full_name = null;
 
     public function __construct()
     {
@@ -51,9 +51,7 @@ class RoverCamera
         return $this;
     }
 
-    /**
-     * @return Collection<int, Rover>
-     */
+
     public function getRoverId(): Collection
     {
         return $this->rover_id;

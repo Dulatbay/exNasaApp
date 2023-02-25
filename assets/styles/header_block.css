@@ -1,0 +1,40 @@
+header{
+    top: 0;
+    position: fixed;
+    height: 55px;
+    width: 100%;
+    background: rgba(7, 7, 7, 0.06);
+    border-bottom: solid 1px rgba(170, 170, 170, 0.21);
+    padding: 0 57px;
+}
+
+
+
+.header-wrapper{
+    width: 70%;
+    height: 100%;
+}
+
+.header-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-profile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.header-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.header-item a{
+    text-decoration: none;
+    color: white;
+}

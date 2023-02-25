@@ -1,39 +1,6 @@
-.carousel{
-    height: 300px;
-    width: 300px;
-    color:  var(--font-color);
-}
-
-.carousel-image{
-    object-fit: cover;
-    height: 400px;
-    width: 300px;
-    border-radius: 50px;
-}
-
-.carousel-caption h5, .carousel-caption p{
+.homepage-title h1{
+    margin: 50px 0;
     color: white;
-}
-
-main{
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-main h1{
     text-align: center;
-    color: white;
-    margin-top: 30px;
-    font-size: 50px;
-}
-.carousel-indicators button {
-    background: white;
 }
 
-.carousels{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 30px;
-}

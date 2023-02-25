@@ -13,28 +13,28 @@ class Rover
 {
     #[ORM\Id]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    public ?string $name = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $landing_date = null;
+    public ?\DateTimeInterface $landing_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $launch_date = null;
+    public ?\DateTimeInterface $launch_date = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $status = null;
+    public ?string $status = null;
 
     #[ORM\Column]
-    private ?int $max_sol = null;
+    public ?int $max_sol = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $max_date = null;
+    public ?\DateTimeInterface $max_date = null;
 
     #[ORM\Column]
-    private ?int $total_photos = null;
+    public ?int $total_photos = null;
 
     #[ORM\ManyToMany(targetEntity: RoverCamera::class, inversedBy: 'rover_id', cascade: ["persist"])]
     public Collection $roverCameras;
@@ -140,9 +140,7 @@ class Rover
 
 
 
-    /**
-     * @return Collection<int, RoverCamera>
-     */
+
     public function getRoverCameras(): Collection
     {
         return $this->roverCameras;

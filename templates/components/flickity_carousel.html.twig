@@ -2,29 +2,42 @@
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <div class="rovers js-flickity"
      data-flickity-options='{ "wrapAround": true }'>
+    {% for i in data %}
     <div class="rover">
-        <img src="/images/curiosity.jpg">
-        <div class="rover-description">
-
+        <img src="/images/{{ i['name'] }}.jpg">
+        <div class="rover__description">
+            <p>Name: <strong>{{ i['name'] }}</strong></p>
+            <p>Status: <strong>{{ i['status'] }}</strong></p>
+            <p>Total photos: <strong>{{ i['total_photos'] }}</strong></p>
+            <p>Cameras: <strong>{{ i['roverCameras']|length }}</strong></p>
         </div>
     </div>
-    <div class="rover" id="spirit">
-        <img src="/images/spirit.jpg">
-    </div>
-    <div class="rover" id="opportunity">
-        <img src="/images/opportunity.jpg">
 
-    </div>
-    <div class="rover" id="perseverance">
-        <img src="/images/perseverance.jpg">
-
-    </div>
+    {% endfor %}
 </div>
 
 <style>
+    .rover__description{
+        top: 35px;
+        left: -30px;
+        color: transparent;
+        font-size: 25px;
+        position: absolute;
+        border-radius: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+        opacity: 0.6;
+    }
+    .rover__description p{
+        margin-bottom: 5px;
+        wrap-option: nowrap;
+        margin-left: 25px;
+    }
     .rovers {
         width: 100vw;
-        height: 65vh;
+        height: 70vh;
         margin-top: 10px;
         background: var(--bg-color);
     }
@@ -50,11 +63,23 @@
 
     }
 
+    .rover.is-selected .rover__description{
+        color: rgb(0, 0, 0);
+    }
 
     .rover img {
         width: 100%;
         background-size: cover;
         border-radius: 20px;
+    }
+    .flickity-button {
+        background: transparent;
+    }
+    .flickity-button-icon {
+        fill: black;
+    }
+    .flickity-button:hover {
+        background: rgba(252, 252, 252, 0.12);
     }
 
 </style>

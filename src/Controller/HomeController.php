@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\RoverRepository;
 use App\Services\DatabaseService;
 use App\Services\NasaApiService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -22,15 +23,10 @@ class HomeController extends AbstractController
     }
 
     #[Route('/homepage')]
-    public function homepage(NasaApiService $nasaApiService, EntityManagerInterface $em, DatabaseService $databaseService): Response
+    public function homepage(DatabaseService $databaseService): Response
     {
-
-        // TODO: $values = $nasaApiService->getAllRovers();
-
-        $values = json_decode(file_get_contents("C:\\Users\\Dulat\\Documents\\GitHub\\exNasaApp\\values.json"), true)["rovers"];
-
-        $databaseService->updateDatabase($values, $em);
-        return $this->render("base.html.twig");
-
+        return $this->render("base.html.twig",
+            ['rovers' => $databaseService->getAllRovers()]
+        );
     }
 }

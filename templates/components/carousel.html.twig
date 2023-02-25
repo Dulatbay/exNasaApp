@@ -1,3 +1,25 @@
+<style>
+    .carousel{
+        height: 300px;
+        width: 300px;
+        color:  var(--font-color);
+    }
+
+    .carousel-image{
+        object-fit: cover;
+        height: 400px;
+        width: 300px;
+        border-radius: 50px;
+    }
+
+    .carousel-caption h5, .carousel-caption p{
+        color: white;
+    }
+
+    .carousel-indicators button {
+        background: white;
+    }
+</style>
 <div id="{{ id }}" class="carousel carousel-dark slide">
     <div class="carousel-indicators">
         {% for i, v in objs %}

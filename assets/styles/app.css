@@ -1,5 +1,7 @@
 @import "auth-block.css";
 @import "home.css";
+@import "welcome_page.css";
+@import "header_block.css";
 
 * {
     padding: 0;
@@ -21,136 +23,13 @@
 ::-webkit-scrollbar {
     width: 0;
 }
-html{
-    overflow-y: hidden;
-}
+
 body {
     background-color: var(--bg-color);
     font-family: 'Proxima Nova', 'system-ui';
     line-height: 1.55;
 }
 
-.content {
-    will-change: transform;
-}
-
-.main-header {
-    position: relative;
-}
-
-.main-header::after {
-    content: "";
-    position: absolute;
-    z-index: 100;
-    width: 100%;
-    height: calc(var(--index) * 10);
-    background-image: url('../../public/images/ground.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    bottom: calc(var(--index) * -5);
-    background-position: center;
-}
-
-
-.layers {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-}
-
-
-.layer {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background-size: cover;
-    background-position: center;
-    will-change: transform;
-    z-index: 2;
-    transition: var(--transition);
-}
-
-
-.layers__header {
-    transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
-    z-index: 1;
-    will-change: transform;
-    text-transform: uppercase;
-    font-weight: 900;
-    color: var(--text);
-    text-shadow: 0 0 15px #8386e7;
-    transition: var(--transition);
-}
-
-
-.layers__base {
-    z-index: 0;
-    transform: translate3d(0, calc(var(--scrollTop) / 1.6), 0);
-}
-
-
-.layers__front {
-    transform: translate3d(0, calc(var(--scrollTop) / 2.8), 0);
-}
-
-.layesrs__title {
-    font-size: calc(var(--index) * 1.5);
-    letter-spacing: calc(var(--index) / 5.3);
-}
-
-.layers__caption {
-    font-size: calc(var(--index) / 1.5);
-    letter-spacing: calc(var(--index) / 5.5);
-    margin-top: calc(var(--index) * -1);
-}
-
-
-.main-article {
-    z-index: 7000;
-    --main--article-header-transform: translate3d(0, calc(var(--scrollTop) / -10), 0);
-    min-height: 100vh;
-    background: black;
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    text-align: center;
-    transition: var(--transition);
-
-}
-
-.main-article__header {
-    text-transform: uppercase;
-    font-size: calc(var(--index) * 1.8);
-    letter-spacing: calc(var(--index) / 7.5);
-    transform: var(--main--article-header-transform);
-    will-change: transform;
-    transition: var(--transition);
-
-}
-
-.main-article__paragraph {
-    max-width: calc(var(--index) * 30);
-    font-size: calc(var(--index) * 0.9);
-    margin-top: calc(var(--index) / 1.25);
-    transform: var(--main--article-header-transform);
-    will-change: transform;
-    transition: var(--transition);
-
-}
-
-.copy {
-    position: absolute;
-    bottom: calc(var(--index) * 2.5);
-    opacity: 0.4;
-    font-size: calc(var(--index) * 0.75);
-    letter-spacing: calc(var(--index) / 35);
-}
 
 
 

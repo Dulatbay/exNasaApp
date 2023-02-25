@@ -36,11 +36,10 @@
 
 
 .auth-bg{
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    height: 100%;
+    width: 100%;
     background-size: cover;
-    padding-bottom: 500px;
 }
 
 .auth-block-redirect_button{

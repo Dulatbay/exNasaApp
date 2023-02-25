@@ -18,8 +18,47 @@
 
 </head>
 <body>
+{% block header %}
+    <header>
+        <div class="header-wrapper">
+            <div class="header-content">
+                <div class="header-profile header-item">
+                    {# TODO: ,make a link to go to the profile to set a new name #}
+                    <div class="header-profile__image">
+                        <img src="#" alt=".." />
+                    </div>
+                    <div class="header-profile__username">
+                        <p>Here's username</p>
+                    </div>
+                    <div class="header-profile__notifications">
+                        <img src="/images/account.svg" alt=".." />
+                    </div>
+                </div>
+                <div class="header-item header-apod">
+                    <a href="#">APOD</a>
+                </div>
+                <div class="header-item header-mars">
+                    <a href="#">Go to Mars</a>
+                </div>
+                <div class="header-item header-rover">
+                    <a href="#">See rovers</a>
+                </div>
+                <div class="header-item header-weather">
+                    <a href="#">Weather map</a>
+                </div>
+                {# Make this panel at the and #}
+                <div class="header-item header-3dModel">
+                    <a href="#">3D model</a>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
 {% block body %}
-    {{ include('components/flickity_carousel.html.twig') }}
+    <div class="homepage-title">
+        <h1>Welcome to Dulatbay Akhan's website</h1>
+    </div>
+    {{ include('components/flickity_carousel.html.twig', { data: rovers}) }}
 {% endblock %}
 {% block scripts %}
 {% endblock %}
