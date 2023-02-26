@@ -1,6 +1,6 @@
 header{
     top: 0;
-    position: fixed;
+    position: relative;
     height: 55px;
     width: 100%;
     background: rgba(7, 7, 7, 0.06);

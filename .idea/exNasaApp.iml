@@ -136,5 +136,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="flickity" level="application" />
+    <orderEntry type="library" name="three" level="application" />
+    <orderEntry type="library" name="es-module-shims" level="application" />
+    <orderEntry type="library" name="three-obj-loader" level="application" />
   </component>
 </module>

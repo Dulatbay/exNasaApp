@@ -19,6 +19,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    // TODO: create a username and after show it on homepage
+    // username
+
     #[ORM\Column]
     private array $roles = ["ROLE_USER"];
 

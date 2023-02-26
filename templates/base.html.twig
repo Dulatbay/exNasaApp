@@ -10,6 +10,7 @@
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
+
     {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
@@ -34,6 +35,9 @@
                         <img src="/images/account.svg" alt=".." />
                     </div>
                 </div>
+                <div class="header-item header-news">
+                    <a href="/homepage">News</a>
+                </div>
                 <div class="header-item header-apod">
                     <a href="#">APOD</a>
                 </div>
@@ -55,10 +59,16 @@
     </header>
 {% endblock %}
 {% block body %}
-    <div class="homepage-title">
-        <h1>Welcome to Dulatbay Akhan's website</h1>
-    </div>
+{#   TODO: write this code on page "See rovers"
     {{ include('components/flickity_carousel.html.twig', { data: rovers}) }}
+    {{ include('components/3D_model.html.twig', {container_width: '300', container_height: '300', bg_hex: '#eee', model3D: 'curiosity.glb'}) }}
+#}
+
+
+
+
+
+
 {% endblock %}
 {% block scripts %}
 {% endblock %}

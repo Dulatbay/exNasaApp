@@ -1,7 +1,9 @@
 controllers:
     resource: ../src/Controller/
     type: annotation
-
+index:
+    path: /
+    controller: App\Controller\HomeController::welcome
 kernel:
     resource: ../src/Kernel.php
     type: annotation
