@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-02-27T10:52:07.136Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="CQpjVMQ1rSU8Dn1KMNZ2" version="20.8.18" type="github">
+<mxfile host="app.diagrams.net" modified="2023-02-27T12:49:53.041Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="eOwxixeQi0vZ8u6HwRx3" version="20.8.18" type="github">
   <diagram name="Страница 1" id="tBW3DqCnYZH2hFp8wwQW">
-    <mxGraphModel dx="1922" dy="1714" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2152" dy="1884" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,7 +12,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-1" value="Post" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
-          <mxGeometry x="80" y="60" width="180" height="150" as="geometry" />
+          <mxGeometry x="120" y="50" width="180" height="150" as="geometry" />
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="GOg839ovim58gzMUC4W8-1">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
@@ -67,7 +67,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-17" value="Comment" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
-          <mxGeometry x="550" y="60" width="180" height="149.99999999999955" as="geometry" />
+          <mxGeometry x="647" y="-170" width="180" height="149.99999999999955" as="geometry" />
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-18" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="GOg839ovim58gzMUC4W8-17">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
@@ -128,7 +128,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-46" value="PostLikes" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
-          <mxGeometry x="-200" y="-70" width="180" height="90" as="geometry" />
+          <mxGeometry x="-200" y="-100" width="180" height="90" as="geometry" />
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-50" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="GOg839ovim58gzMUC4W8-46">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
@@ -292,7 +292,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-104" value="PostCommets" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
-          <mxGeometry x="310" y="60" width="180" height="149.99999999999955" as="geometry" />
+          <mxGeometry x="360" y="30" width="180" height="149.99999999999955" as="geometry" />
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-105" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="GOg839ovim58gzMUC4W8-104">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
@@ -321,7 +321,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-111" value="UserComments" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
-          <mxGeometry x="380" y="-120" width="180" height="149.99999999999955" as="geometry" />
+          <mxGeometry x="390" y="-170" width="180" height="149.99999999999955" as="geometry" />
         </mxCell>
         <mxCell id="GOg839ovim58gzMUC4W8-112" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="GOg839ovim58gzMUC4W8-111">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
