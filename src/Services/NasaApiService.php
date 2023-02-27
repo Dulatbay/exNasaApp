@@ -13,8 +13,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class NasaApiService
 {
     private HttpClientInterface $httpClient;
-    private string $api_key = 'vypQbfVJX694pYGvYeylkvdU7BcrZPmVg0n1mYfD';
-    //   private string $api_key = 'DEMO_KEY';
+    // private string $api_key = 'vypQbfVJX694pYGvYeylkvdU7BcrZPmVg0n1mYfD';
+    private string $api_key = 'DEMO_KEY';
 
     public function __construct(HttpClientInterface $httpClient)
     {

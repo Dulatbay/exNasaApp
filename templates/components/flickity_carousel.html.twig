@@ -5,21 +5,20 @@
 <div class="rovers js-flickity"
      data-flickity-options='{ "wrapAround": true }'>
     {% for i in data %}
-    <div class="rover">
-        <img src="/images/{{ i['name'] }}.jpg">
-        <div class="rover__description">
-            <p>Name: <strong>{{ i['name'] }}</strong></p>
-            <p>Status: <strong>{{ i['status'] }}</strong></p>
-            <p>Total photos: <strong>{{ i['total_photos'] }}</strong></p>
-            <p>Cameras: <strong>{{ i['roverCameras']|length }}</strong></p>
+        <div class="rover">
+            <img src="/images/{{ i['name'] }}.jpg">
+            <div class="rover__description">
+                <p>Name: <strong>{{ i['name'] }}</strong></p>
+                <p>Status: <strong>{{ i['status'] }}</strong></p>
+                <p>Total photos: <strong>{{ i['total_photos'] }}</strong></p>
+                <p>Cameras: <strong>{{ i['roverCameras']|length }}</strong></p>
+            </div>
         </div>
-    </div>
-
     {% endfor %}
 </div>
 
 <style>
-    .rover__description{
+    .rover__description {
         top: 35px;
         left: -30px;
         color: transparent;
@@ -32,11 +31,13 @@
         flex-direction: column;
         opacity: 0.6;
     }
-    .rover__description p{
+
+    .rover__description p {
         margin-bottom: 5px;
         wrap-option: nowrap;
         margin-left: 25px;
     }
+
     .rovers {
         width: 100vw;
         height: 70vh;
@@ -65,7 +66,7 @@
 
     }
 
-    .rover.is-selected .rover__description{
+    .rover.is-selected .rover__description {
         color: rgb(0, 0, 0);
     }
 
@@ -74,12 +75,15 @@
         background-size: cover;
         border-radius: 20px;
     }
+
     .flickity-button {
         background: transparent;
     }
+
     .flickity-button-icon {
         fill: black;
     }
+
     .flickity-button:hover {
         background: rgba(252, 252, 252, 0.12);
     }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\Type\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,8 @@ use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 
 class UserAuthSecurityController extends AbstractController
 {
@@ -21,28 +24,27 @@ class UserAuthSecurityController extends AbstractController
     {
     }
     #[Route(path: '/register', name: 'app_register')]
-    #[IsGranted('IS_AUTHENTICATED_ANONYMOUSLY')]
-    public function register(Request $req, EntityManagerInterface $em, UserCheckerInterface $checker, UserAuthenticatorInterface $authenticator, UserPasswordHasherInterface $hasher): Response
+    function register(Security $security,Request $req, EntityManagerInterface $em, UserCheckerInterface $checker, UserAuthenticatorInterface $authenticator, UserPasswordHasherInterface $hasher, FormLoginAuthenticator $formLoginAuthenticator): Response
     {
+        if($security->getUser()){
+            return $this->redirectToRoute('app_homepage');
+        }
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($req);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $user->setPassword($hasher->hashPassword($user, $user->getPassword()));
             $em->persist($user);
             $em->flush();
             $checker->checkPreAuth($user);
 
-            $authenticator->authenticateUser($user, $req);
+            $authenticator->authenticateUser($user, $formLoginAuthenticator, $req);
             return $this->redirectToRoute('app_homepage');
         }
-
         return $this->render('register.html.twig', ['form' => $form->createView()]);
     }
 
     #[Route(path: '/login', name: 'app_login')]
-    #[IsGranted('IS_AUTHENTICATED_ANONYMOUSLY')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one

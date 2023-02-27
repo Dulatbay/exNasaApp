@@ -20,23 +20,30 @@
 </head>
 <body>
 {% block header %}
+    {# TODO: make a notofication about authentification user #}
     <header>
         <div class="header-wrapper">
             <div class="header-content">
                 <div class="header-profile header-item">
-                    {# TODO: ,make a link to go to the profile to set a new name #}
+                    {# TODO: make avatar for user #}
                     <div class="header-profile__image">
-                        <img src="#" alt=".." />
+                        <img src="/images/account.svg" alt=".."/>
                     </div>
+                    {# TODO: ,make a link to go to the profile to set a new name #}
                     <div class="header-profile__username">
+                        {#  <p>{{ app.user.email }}</p> #}
                         <p>Here's username</p>
                     </div>
                     <div class="header-profile__notifications">
-                        <img src="/images/account.svg" alt=".." />
+                        <div class="notifications__dote"></div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                             class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="header-item header-news">
-                    <a href="/homepage">News</a>
+                <div class="header-item header-home">
+                    <a href="/homepage">Home page</a>
                 </div>
                 <div class="header-item header-apod">
                     <a href="#">APOD</a>
@@ -59,16 +66,27 @@
     </header>
 {% endblock %}
 {% block body %}
-{#   TODO: write this code on page "See rovers"
-    {{ include('components/flickity_carousel.html.twig', { data: rovers}) }}
+    <div class="home-body">
+        <div class="home-wrapper">
+
+        {#   TODO: write this code on page "See rovers"
+    {{  include('components/flickity_carousel.html.twig', { data: rovers}) }}
     {{ include('components/3D_model.html.twig', {container_width: '300', container_height: '300', bg_hex: '#eee', model3D: 'curiosity.glb'}) }}
-#}
+        #}
+
+        <div class="home-create__post homepage-item">
+            <label>
+                <textarea class="create__post-input" placeholder="Create post..."></textarea>
+            </label>
+            <div class="create__post-input-file">
+                <label><img src="/images/add_image.svg" alt=""/></label>
+                <input type="file" class="input_file"/>
+            </div>
+        </div>
 
 
-
-
-
-
+        </div>
+    </div>
 {% endblock %}
 {% block scripts %}
 {% endblock %}

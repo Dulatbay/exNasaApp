@@ -11,7 +11,7 @@ header{
 
 
 .header-wrapper{
-    width: 70%;
+    width: 80%;
     height: 100%;
 }
 
@@ -37,4 +37,46 @@ header{
 .header-item a{
     text-decoration: none;
     color: white;
+    font-weight: 500;
+    font-size: calc(var(--index) * 0.6);
 }
+
+.header-profile__username{
+    margin-right: 15px;
+    font-size: calc(var(--index) * 0.6);
+}
+.header-profile__username p{
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-weight: 400;
+}
+
+.header-profile__image{
+    padding: 2px 4px;
+    border-radius: 100px;
+    border: solid white 2px;
+    margin-right: 15px;
+}
+
+.header-profile__image img{
+    width: 20px;
+    height: 20px;
+    margin-bottom: 2px;
+}
+.header-profile__notifications{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notifications__dote{
+    width: 7px;
+    height: 7px;
+    border-radius: 100px;
+    background: red;
+    position: relative;
+    top: -2px;
+    left: 70%;
+}
+
+

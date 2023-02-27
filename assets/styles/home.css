@@ -1,1 +1,48 @@
+.homepage-item{
+    padding: 12px;
+    background: rgba(42, 65, 189, 0.06);
+    border-radius: 15px;
+}
 
+.home-wrapper {
+    width: 700px;
+    margin: 25px auto 0;
+    padding: 15px;
+}
+
+.home-create__post{
+    display: flex;
+    align-items: flex-start;
+}
+
+.home-create__post label{
+    width: 70%;
+}
+
+.create__post-input{
+    width: 100%;
+    color: white;
+    margin-left: 5px;
+    background: rgba(128, 128, 128, 0.07);
+    padding: 8px;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    caret-color: white;
+}
+
+.create__post-input-file{
+    margin-left: 20px;
+    opacity: 0.5;
+}
+
+.create__post-input-file .input_file{
+    display: none;
+}
+
+.create__post-input-file label img{
+    width: 25px;
+}
+    /*
+    TODO: make min-width for textarea and change table name Images to Files
+   */
