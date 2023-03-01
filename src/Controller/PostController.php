@@ -29,6 +29,7 @@ class PostController extends AbstractController
             $fileToDatabase->setName($fileUploader->upload($file));
             $entityManager->persist($fileToDatabase);
         }
+
         $post->setTitle($title);
         $post->setContentText($contentText);
         $entityManager->persist($post);
