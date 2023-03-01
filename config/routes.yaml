@@ -13,3 +13,8 @@ app_register:
 app_homepage:
     path: /homepage
     controller: App\Controller\HomeController::homepage
+create_post:
+    path: /create-post
+    controller: App\Controller\PostController::createPost
+
+

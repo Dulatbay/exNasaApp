@@ -36,12 +36,14 @@
     opacity: 0.5;
 }
 
-.create__post-input-file .input_file{
-    display: none;
-}
 
 .create__post-input-file label img{
     width: 25px;
+}
+.files{
+    width: 25px;
+    height: 50px;
+
 }
     /*
     TODO: make min-width for textarea and change table name Images to Files

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 
+use PharIo\Manifest\Exception;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
@@ -39,15 +40,17 @@ class NasaApiService
 
     }
 
-    /**
-     * @throws TransportExceptionInterface
-     * @throws ServerExceptionInterface
-     * @throws RedirectionExceptionInterface
-     * @throws ClientExceptionInterface
-     */
+
     public function getAllRovers(){
-        $response = $this->httpClient->request('GET', 'https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=' . $this->api_key);
-        return json_decode($response->getContent(),true)["rovers"];
+        try {
+            $response = $this->httpClient->request('GET', 'https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=' . $this->api_key);
+            return json_decode($response->getContent(),true)["rovers"];
+        }
+        catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            // TODO: log
+            return null;
+        }
+
     }
 
 }

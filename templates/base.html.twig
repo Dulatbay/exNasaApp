@@ -69,26 +69,42 @@
     <div class="home-body">
         <div class="home-wrapper">
 
-        {#   TODO: write this code on page "See rovers"
-    {{  include('components/flickity_carousel.html.twig', { data: rovers}) }}
-    {{ include('components/3D_model.html.twig', {container_width: '300', container_height: '300', bg_hex: '#eee', model3D: 'curiosity.glb'}) }}
-        #}
-
-        <div class="home-create__post homepage-item">
-            <label>
-                <textarea class="create__post-input" placeholder="Create post..."></textarea>
-            </label>
-            <div class="create__post-input-file">
-                <label><img src="/images/add_image.svg" alt=""/></label>
-                <input type="file" class="input_file"/>
+            <div class="home-create__post homepage-item">
+                <form id="create-post-form">
+                    <input type="text" placeholder="Title" name="title"/>
+                    <input type="text" placeholder="Content" name="contentText"/>
+                    <input type="file" name="files[]" multiple>
+                    <button type="submit" id="create-post">Create</button>
+                </form>
             </div>
-        </div>
-
 
         </div>
     </div>
 {% endblock %}
+
 {% block scripts %}
+    <script>
+        let form = document.getElementById('create-post-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let formData = new FormData(form);
+            fetch('{{ path('create_post') }}', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.log(response);
+                }
+            }).then(json => {
+                console.log(json);
+            }).catch(error => {
+                console.log(formData);
+                console.log('There was a problem with the fetch operation:', error);
+            });
+        });
+    </script>
 {% endblock %}
 </body>
 </html>
