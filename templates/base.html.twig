@@ -71,8 +71,7 @@
 
             <div class="home-create__post homepage-item">
                 <form id="create-post-form">
-                    <input type="text" placeholder="Title" name="title"/>
-                    <input type="text" placeholder="Content" name="contentText"/>
+                    <input type="text" placeholder="Create post" name="title" onkeydown="changeInput(this)" />
                     <input type="file" name="files[]" multiple>
                     <button type="submit" id="create-post">Create</button>
                 </form>
@@ -84,6 +83,17 @@
 
 {% block scripts %}
     <script>
+        function changeInput(e){
+            console.log(e.keyCode)
+            if(e.keyCode === 13){
+                console.log('SUBMIT')
+                console.log(e.keyCode);
+                e.preventDefault();
+            }
+            else
+                console.log(e.value)
+        }
+
         let form = document.getElementById('create-post-form');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -98,7 +108,7 @@
                     console.log(response);
                 }
             }).then(json => {
-                console.log(json);
+                console.log( JSON.parse(json[0]));
             }).catch(error => {
                 console.log(formData);
                 console.log('There was a problem with the fetch operation:', error);
