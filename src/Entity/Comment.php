@@ -6,6 +6,7 @@ use App\Repository\CommentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -19,22 +20,25 @@ class Comment
     private ?string $Content = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[MaxDepth(1)]
     private ?user $userId = null;
 
 
 
-    #[ORM\OneToMany(mappedBy: 'comment', targetEntity: CommentFile::class)]
-    private Collection $commentImages;
-
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
+    #[MaxDepth(1)]
     private ?Post $postId = null;
+
+    #[MaxDepth(1)]
+    #[ORM\OneToMany(mappedBy: 'comment', targetEntity: file::class)]
+    private Collection $files;
 
 
 
     public function __construct()
     {
-        $this->commentImages = new ArrayCollection();
+        $this->files = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,57 +70,6 @@ class Comment
         return $this;
     }
 
-    public function getPostComments(): ?PostComment
-    {
-        return $this->postComment;
-    }
-
-    public function setPostComments(?PostComment $postComment): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($postComment === null && $this->postComment !== null) {
-            $this->postComment->setCommentId(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($postComment !== null && $postComment->getCommentId() !== $this) {
-            $postComment->setCommentId($this);
-        }
-
-        $this->postComments = $postComment;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, CommentFile>
-     */
-    public function getCommentImages(): Collection
-    {
-        return $this->commentImages;
-    }
-
-    public function addCommentImage(CommentFile $commentImage): self
-    {
-        if (!$this->commentImages->contains($commentImage)) {
-            $this->commentImages->add($commentImage);
-            $commentImage->setComment($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommentImage(CommentFile $commentImage): self
-    {
-        if ($this->commentImages->removeElement($commentImage)) {
-            // set the owning side to null (unless already changed)
-            if ($commentImage->getComment() === $this) {
-                $commentImage->setComment(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getPostId(): ?Post
     {
@@ -126,6 +79,36 @@ class Comment
     public function setPostId(?Post $postId): self
     {
         $this->postId = $postId;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, file>
+     */
+    public function getFiles(): Collection
+    {
+        return $this->files;
+    }
+
+    public function addFile(file $file): self
+    {
+        if (!$this->files->contains($file)) {
+            $this->files->add($file);
+            $file->setComment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFile(file $file): self
+    {
+        if ($this->files->removeElement($file)) {
+            // set the owning side to null (unless already changed)
+            if ($file->getComment() === $this) {
+                $file->setComment(null);
+            }
+        }
 
         return $this;
     }

@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -34,21 +36,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Post::class, orphanRemoval: true)]
+    #[MaxDepth(1)]
     private Collection $posts;
 
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $username = null;
 
     #[ORM\OneToMany(mappedBy: 'subscriber', targetEntity: Subscription::class, orphanRemoval: true)]
+    #[MaxDepth(1)]
     private Collection $subscriptions;
 
     #[ORM\OneToMany(mappedBy: 'subscribeTo', targetEntity: Subscription::class)]
+    #[MaxDepth(1)]
     private Collection $subscribers;
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'likes')]
+    #[MaxDepth(1)]
     private Collection $likes;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Comment::class)]
+    #[MaxDepth(1)]
     private Collection $comments;
 
 
@@ -61,7 +68,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->subscribers = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
-
     }
 
     public function getId(): ?int
@@ -113,7 +119,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }

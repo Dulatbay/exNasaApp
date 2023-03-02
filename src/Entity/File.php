@@ -6,6 +6,8 @@ use App\Repository\FileRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: FileRepository::class)]
 class File
@@ -18,11 +20,14 @@ class File
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
-    private ?PostFile $postImages = null;
+    #[ORM\ManyToOne(inversedBy: 'files')]
+    #[MaxDepth(1)]
+    private ?Comment $comment = null;
 
-    #[ORM\OneToOne(mappedBy: 'file', cascade: ['persist', 'remove'])]
-    private ?CommentFile $commentImages = null;
+    #[ORM\ManyToOne(inversedBy: 'files')]
+    #[MaxDepth(1)]
+    private ?Post $post = null;
+
 
     public function __construct()
     {}
@@ -45,49 +50,29 @@ class File
         return $this;
     }
 
-    /**
-     * @return PostFile
-     */
-    public function getPostImages(): PostFile
+    public function getComment(): ?Comment
     {
-        return $this->postImages;
+        return $this->comment;
     }
 
-
-
-
-
-    public function setPostImages(?PostFile $postImages): self
+    public function setComment(?Comment $comment): self
     {
-        // unset the owning side of the relation if necessary
-        if ($postImages === null && $this->postImages !== null) {
-            $this->postImages->setImage(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($postImages !== null && $postImages->getImage() !== $this) {
-            $postImages->setImage($this);
-        }
-
-        $this->postImages = $postImages;
+        $this->comment = $comment;
 
         return $this;
     }
 
-    public function setCommentImages(?CommentFile $commentImages): self
+    public function getPost(): ?Post
     {
-        // unset the owning side of the relation if necessary
-        if ($commentImages === null && $this->commentImages !== null) {
-            $this->commentImages->setFile(null);
-        }
+        return $this->post;
+    }
 
-        // set the owning side of the relation if necessary
-        if ($commentImages !== null && $commentImages->getFile() !== $this) {
-            $commentImages->setFile($this);
-        }
-
-        $this->commentImages = $commentImages;
+    public function setPost(?Post $post): self
+    {
+        $this->post = $post;
 
         return $this;
     }
+
+
 }

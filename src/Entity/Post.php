@@ -6,6 +6,8 @@ use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -16,6 +18,7 @@ class Post
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[MaxDepth(1)]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $userId = null;
 
@@ -24,17 +27,19 @@ class Post
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contentText = null;
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: PostFile::class)]
-    private Collection $postFiles;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likes')]
+    #[MaxDepth(1)]
     private Collection $likes;
 
-
-
-
+    #[MaxDepth(1)]
     #[ORM\OneToMany(mappedBy: 'postId', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
+
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: File::class)]
+    #[MaxDepth(1)]
+    private Collection $files;
+
 
 
 
@@ -44,6 +49,7 @@ class Post
         $this->likes = new ArrayCollection();
         $this->postFiles = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->files = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,35 +125,7 @@ class Post
     }
 
 
-    /**
-     * @return Collection<int, PostFile>
-     */
-    public function getPostImages(): Collection
-    {
-        return $this->postFiles;
-    }
 
-    public function addPostImage(PostFile $postImage): self
-    {
-        if (!$this->postFiles->contains($postImage)) {
-            $this->postFiles->add($postImage);
-            $postImage->setPost($this);
-        }
-
-        return $this;
-    }
-
-    public function removePostImage(PostFile $postImage): self
-    {
-        if ($this->postFiles->removeElement($postImage)) {
-            // set the owning side to null (unless already changed)
-            if ($postImage->getPost() === $this) {
-                $postImage->setPost(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Comment>
@@ -173,6 +151,36 @@ class Post
             // set the owning side to null (unless already changed)
             if ($comment->getPostId() === $this) {
                 $comment->setPostId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, File>
+     */
+    public function getFiles(): Collection
+    {
+        return $this->files;
+    }
+
+    public function addFile(File $file): self
+    {
+        if (!$this->files->contains($file)) {
+            $this->files->add($file);
+            $file->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFile(File $file): self
+    {
+        if ($this->files->removeElement($file)) {
+            // set the owning side to null (unless already changed)
+            if ($file->getPost() === $this) {
+                $file->setPost(null);
             }
         }
 
