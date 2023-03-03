@@ -140,5 +140,6 @@
     <orderEntry type="library" name="three" level="application" />
     <orderEntry type="library" name="es-module-shims" level="application" />
     <orderEntry type="library" name="three-obj-loader" level="application" />
+    <orderEntry type="library" name="moment.js" level="application" />
   </component>
 </module>

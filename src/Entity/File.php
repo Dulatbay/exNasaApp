@@ -29,6 +29,10 @@ class File
     private ?Post $post = null;
 
 
+    public function getExtension(): array|string
+    {
+        return pathinfo($this->name, PATHINFO_EXTENSION);
+    }
     public function __construct()
     {}
 

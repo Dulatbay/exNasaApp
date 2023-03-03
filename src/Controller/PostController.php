@@ -6,10 +6,13 @@ use App\Entity\File;
 use App\Entity\Post;
 use App\Entity\PostFile;
 use App\Services\FileUploader;
+use DateTime;
+use DateTimeZone;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,16 +36,31 @@ class PostController extends AbstractController
     {
         $title = $request->request->get('title');
         $contentText = $request->request->get('contentText');
-        $files = $request->files->get('files');
         $post = new Post();
-        foreach ($files as $file) {
-            $fileToDatabase = new File();
-            $fileToDatabase
-                ->setName($fileUploader->upload($file));
-            $entityManager
-                ->persist($fileToDatabase);
-            $post->addFile($fileToDatabase);
+        $files = $request->files->get('files');
+        // Получаем часовой пояс клиента
+
+        // Создаем новую дату-время в часовом поясе клиента
+        try {
+            $clientDateTime = new \DateTimeImmutable('now');
+            // Преобразуем дату-время в UTC для сохранения в базе данных
+            $post->setCreatedAt($clientDateTime);
+        } catch (\Exception $e) {
+            // TODO:
+            // return
+
         }
+
+
+        if ($files)
+            foreach ($files as $file) {
+                $fileToDatabase = new File();
+                $fileToDatabase
+                    ->setName($fileUploader->upload($file));
+                $entityManager
+                    ->persist($fileToDatabase);
+                $post->addFile($fileToDatabase);
+            }
         $post->setUserId($tokenStorage->getToken()->getUser());
         $post->setTitle($title);
         $post->setContentText($contentText);

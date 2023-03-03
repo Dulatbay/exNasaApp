@@ -6,45 +6,107 @@
 
 .home-wrapper {
     width: 700px;
-    margin: 25px auto 0;
+    margin: auto;
     padding: 15px;
 }
 
-.home-create__post{
-    display: flex;
-    align-items: flex-start;
-}
-
-.home-create__post label{
-    width: 70%;
-}
-
-.create__post-input{
+.create-post-input_field{
+    background: rgba(189, 195, 225, 0.09);
+    padding: 10px 10px 10px 12px;
     width: 100%;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+#create-post-input_text
+{
+    resize: none;
+    border: none;
     color: white;
-    margin-left: 5px;
-    background: rgba(128, 128, 128, 0.07);
-    padding: 8px;
-    border-radius: 5px;
-    border: 0;
-    outline: none;
     caret-color: white;
+    outline: none;
+    background: transparent;
+    width: 95%;
+    height: 24px;
+    float: left;
 }
 
-.create__post-input-file{
-    margin-left: 20px;
-    opacity: 0.5;
+
+#create-post-buttons {
+    display: none;
+    margin-top: 10px;
+    justify-content: space-between;
 }
 
 
-.create__post-input-file label img{
-    width: 25px;
-}
-.files{
-    width: 25px;
-    height: 50px;
 
+#create-post-file_list{
+    margin-top: 15px;
+    flex-wrap: wrap;
 }
-    /*
-    TODO: make min-width for textarea and change table name Images to Files
-   */
+
+
+#create-post-input_file{
+    display: none;
+}
+
+
+.create-post-label_file label{
+    cursor: pointer;
+    width: inherit;
+}
+.create-post-label_file label img{
+    width: inherit;
+}
+
+.create-post-label_file{
+    opacity: 0.4;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 7px;
+}
+
+.file-icon-container {
+    position: relative;
+}
+
+.file-icon-container::before{
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-image: url('../../public/images/icon-close.svg');
+}
+
+.file-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+}
+
+#create-post-file_list{
+    display: flex;
+}
+
+#create-post-file_list div{
+    margin-left: 15px;
+}
+
+.text-truncate{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70px;
+}

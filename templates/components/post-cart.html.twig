@@ -1,0 +1,116 @@
+<style>
+    .post {
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .post-header {
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .user-info img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    .post-title {
+        margin: 10px 0;
+        font-size: 24px;
+    }
+
+    .post-date {
+        margin-bottom: 10px;
+        color: #999;
+    }
+
+    .post-content p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .post-files {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .file,
+    .image {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .file-extension {
+        color: #999;
+        margin-left: 5px;
+    }
+
+    .image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+</style>
+<div class="post homepage-item">
+    <div class="post-header">
+        <div class="user-info">
+            <img src="images/account.svg">
+            <div class="user-info_values">
+                <div class="username">{{ post.userId.email }}</div>
+                <div class="post-date" id="{{ post.id }}"></div>
+            </div>
+        </div>
+    </div>
+    <div class="post-content">
+        <h2 class="post-title">{{ post.title }}</h2>
+        <p>{{ post.contentText }}</p>
+    </div>
+    <div class="post-files">
+        {% for file in post.files %}
+            {% if file.getExtension() == 'jpg' or file.getExtension() == 'jpeg' or file.getExtension() == 'png' or file.getExtension() == 'gif' %}
+                <div class="image">
+                    <img src="{{ asset('uploads/' ~ file.name) }}" alt="{{ file.name }}">
+                </div>
+            {% else %}
+                <div class="file">
+                    <a href="{{ asset('uploads/' ~ file.name) }}" download>{{ file.name }}</a>
+                    <span class="file-extension">{{ file.getExtension() }}</span>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="post-actions">
+        <a href="#" class="post-action like">{{ post.likes|length }}</a>
+        <a href="#" class="post-action comment">{{ post.comments|length }}</a>
+        <a href="#" class="post-action share">Share</a>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+
+    postDate = document.getElementById('{{ post.id }}')
+    postDate.innerHTML = getFormattedDate('{{ post.createdAt|date("j F Y, H:i") }}')
+
+    function getFormattedDate(date) {
+        const momentDate = moment(date);
+        const now = moment();
+
+        if (now.diff(momentDate, 'days') < 7) {
+            return momentDate.fromNow();
+        }
+
+        return momentDate.format('MMMM Do YYYY, h:mm:ss a');
+    }
+</script>

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Entity\Post;
 use App\Entity\Rover;
 use App\Entity\RoverCamera;
 use App\Repository\RoverRepository;
@@ -99,5 +100,10 @@ class DatabaseService
             $result[] = $rover;
         }
         return $result;
+    }
+
+    public function getAllPosts(): array
+    {
+        return $this->entityManager->getRepository(Post::class)->findAll();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -28,6 +29,7 @@ class Post
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contentText = null;
 
+
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likes')]
     #[MaxDepth(1)]
     private Collection $likes;
@@ -40,6 +42,10 @@ class Post
     #[MaxDepth(1)]
     private Collection $files;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+
 
 
 
@@ -47,7 +53,7 @@ class Post
     public function __construct()
     {
         $this->likes = new ArrayCollection();
-        $this->postFiles = new ArrayCollection();
+        $this->files = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->files = new ArrayCollection();
     }
@@ -183,6 +189,18 @@ class Post
                 $file->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

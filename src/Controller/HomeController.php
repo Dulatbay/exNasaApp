@@ -36,10 +36,9 @@ class HomeController extends AbstractController
     }
 
     #[Route('/homepage')]
-    public function homepage(Request $req, TokenStorageInterface $storage): Response
+    public function homepage(Request $req, DatabaseService $databaseService ): Response
     {
-
-        return $this->render("base.html.twig");
-
+        $posts=$databaseService->getAllPosts();
+        return $this->render("base.html.twig", ['posts' => $posts]);
     }
 }
