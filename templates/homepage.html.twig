@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="home-body">
+        <div class="home-wrapper">
+            <div class="home-create__post homepage-item">
+                <form id="create-post-form">
+                    <div class="create-post-input_field">
+                        <textarea id="create-post-input_text"
+                                  rows="1"
+                                  type="text"
+                                  placeholder="Create post"
+                                  name="title"></textarea>
+                        <div class="create-post-label_file">
+                            <label for="create-post-input_file">
+                                <img src="images/add-file.svg"/>
+                            </label>
+                            <input id="create-post-input_file"
+                                   type="file"
+                                   name="files[]"
+                                   multiple>
+                        </div>
+                    </div>
+                    <div id="create-post-file_list">
+
+                    </div>
+                    {# TODO: make animation #}
+                    <div id="create-post-buttons">
+                        <button type="button"
+                                id="clear-post-button"
+                                class="btn btn-outline-danger">
+                            Clear
+                        </button>
+                        <button type="button"
+                                id="create-post-button"
+                                class="btn btn-dark">
+                            Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="homepage-item home-select_news">
+                <div>New</div>
+                <div>Subscribes</div>
+            </div>
+            {% for post in posts %}
+                {% include 'components/post-cart.html.twig' with {'post': post} %}
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        let selectedFiles = [];
+        let isShowButtons = false;
+
+
+        let fileList = document.getElementById('create-post-file_list')
+        let form = document.getElementById('create-post-form');
+        let input = document.getElementById('create-post-input_text')
+        let createBtn = document.getElementById('create-post-button');
+        let clearBtn = document.getElementById('clear-post-button')
+        let btns = document.getElementById('create-post-buttons')
+        let inputFile = document.getElementById('create-post-input_file')
+
+        inputFile.addEventListener('change', (e) => {
+            const files = e.target.files;
+            selectedFiles.push(...Array.from(files));
+            setIsShowButtons()
+            showOrHideButtons()
+            renderFiles();
+        })
+
+        function renderFiles() {
+            fileList.innerHTML = ''
+            for (let i = 0; i < selectedFiles.length; i++)
+                fileList.append(getDivByFile(selectedFiles[i], i));
+        }
+
+        function showOrHideButtons() {
+            btns.style.display = isShowButtons ? 'flex' : 'none';
+        }
+
+        function setIsShowButtons() {
+            isShowButtons = ((selectedFiles.length !== 0 || input.value.trim() !== ''))
+        }
+
+        input.addEventListener('input', () => {
+            console.log(1);
+            setIsShowButtons()
+            showOrHideButtons()
+            input.style.height = 'auto';
+            input.style.height = `${input.scrollHeight}px`;
+        });
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                input.style.height = `${input.scrollHeight}px`;
+            }
+        });
+        input.addEventListener('keyup', () => {
+            if (input.value.length === 0) {
+                input.style.height = 'auto';
+            }
+        });
+        createBtn.addEventListener('click', (e) => {
+            console.log("SUBMIT", form);
+            e.preventDefault();
+            let arrLines = getArrayTextByInput(input.value);
+            let title = arrLines.shift(),
+                contentText = arrLines.join('\n');
+            let formData = new FormData();
+            formData.set('title', title)
+            formData.set('contentText', contentText)
+            selectedFiles.forEach(file => {
+                formData.append('files[]', file);
+            });
+            console.log(formData.getAll('files[]'));
+            fetch('{{ path('create_post') }}', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    clearFields();
+                    return response.json();
+                } else {
+                    console.log(response);
+                }
+            }).then(json => {
+                console.log(JSON.parse(json[0]));
+            }).catch(error => {
+                console.log(formData);
+                console.log('There was a problem with the fetch operation:', error);
+            });
+        });
+        clearBtn.addEventListener('click', () => clearFields())
+
+        function clearFields() {
+            selectedFiles = []
+            input.value = ''
+            setIsShowButtons()
+            showOrHideButtons()
+            renderFiles();
+
+        }
+
+        function getDivByFile(file, index) {
+            const getImage = (fileName, width) => {
+                const img = document.createElement('img');
+                img.src = `images/${fileName}.svg`
+                img.width = width;
+                // height = auto
+                return img;
+            }
+            const getFileName = () => {
+                const span = document.createElement('span')
+                span.textContent = file.name;
+                span.classList.add('text-truncate')
+                return span;
+            }
+            const getRemoveButton = () => {
+                const fileIconContainer = document.createElement('div');
+                fileIconContainer.classList.add('file-icon-container');
+                fileIconContainer.addEventListener('click', (e) => {
+                    console.log(e.target);
+                    selectedFiles.splice(index, 1);
+                    fileItem.remove();
+                    renderFiles();
+                    setIsShowButtons()
+                    showOrHideButtons()
+                })
+                fileIconContainer.append(getImage('icon-file', 40))
+
+                return fileIconContainer;
+            }
+
+
+            const fileItem = document.createElement('div')
+            fileItem.classList.add('file-item')
+            fileItem.append(getRemoveButton());
+            fileItem.append(getFileName())
+
+
+            return fileItem;
+        }
+
+        function getArrayTextByInput(text) {
+            return text.split('\n');
+        }
+    </script>
+{% endblock %}

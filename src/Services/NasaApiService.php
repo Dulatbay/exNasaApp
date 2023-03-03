@@ -15,38 +15,36 @@ class NasaApiService
 {
     private HttpClientInterface $httpClient;
     // private string $api_key = 'vypQbfVJX694pYGvYeylkvdU7BcrZPmVg0n1mYfD';
-    private string $api_key = 'DEMO_KEY';
+    private string $api_key = '2KlcaMNeirkzD4HNsZXRXaM1BccidC0dqGrRo5RM';
+    // private string $api_key = 'DEMO_KEY';
 
     public function __construct(HttpClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
     }
 
-    /**
-     * @throws TransportExceptionInterface
-     * @throws ServerExceptionInterface
-     * @throws RedirectionExceptionInterface
-     * @throws ClientExceptionInterface
-     */
+
     public function getPictureOfDay(int $count = 3)
     {
         // TODO: remake this code
-        $response = $this->httpClient->request(
-            'GET',
-            'https://api.nasa.gov/planetary/apod?count=' . $count . '&api_key=' . $this->api_key
-        );
-        $statusCode = $response->getStatusCode();
-        return json_decode($response->getContent());
-
+        try {
+            $response = $this->httpClient->request(
+                'GET',
+                'https://api.nasa.gov/planetary/apod?count=' . $count . '&api_key=' . $this->api_key
+            );
+            return json_decode($response->getContent());
+        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            return null;
+        }
     }
 
 
-    public function getAllRovers(){
+    public function getAllRovers()
+    {
         try {
             $response = $this->httpClient->request('GET', 'https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=' . $this->api_key);
-            return json_decode($response->getContent(),true)["rovers"];
-        }
-        catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            return json_decode($response->getContent(), true)["rovers"];
+        } catch (TransportExceptionInterface|ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
             // TODO: log
             return null;
         }

@@ -58,6 +58,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[MaxDepth(1)]
     private Collection $comments;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isBanned = null;
+
 
 
 
@@ -294,6 +297,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $comment->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsBanned(): ?bool
+    {
+        return $this->isBanned;
+    }
+
+    public function setIsBanned(?bool $isBanned): self
+    {
+        $this->isBanned = $isBanned;
 
         return $this;
     }

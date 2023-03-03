@@ -1,0 +1,4 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'components/carouselForApod.html.twig' with {'apods': apods, 'id': 'carouselApod'} %}
+{% endblock %}

@@ -106,4 +106,6 @@ class DatabaseService
     {
         return $this->entityManager->getRepository(Post::class)->findAll();
     }
+
+
 }

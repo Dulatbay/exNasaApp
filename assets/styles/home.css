@@ -110,3 +110,17 @@
     white-space: nowrap;
     max-width: 70px;
 }
+
+.home-select_news{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.home-select_news div{
+    flex-grow: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

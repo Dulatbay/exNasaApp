@@ -24,6 +24,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class HomeController extends AbstractController
 {
     private Security $security;
+
     public function __construct(Security $security)
     {
         $this->security = $security;
@@ -35,10 +36,16 @@ class HomeController extends AbstractController
         return $this->render("welcome_page.html.twig");
     }
 
-    #[Route('/homepage')]
-    public function homepage(Request $req, DatabaseService $databaseService ): Response
+    #[Route('/homepage', name: 'app_homepage')]
+    public function homepage(Request $req, DatabaseService $databaseService): Response
     {
-        $posts=$databaseService->getAllPosts();
-        return $this->render("base.html.twig", ['posts' => $posts]);
+        $posts = $databaseService->getAllPosts();
+        return $this->render("homepage.html.twig", ['posts' => $posts]);
+    }
+    #[Route('/apods')]
+    public function apods(Request $req, NasaApiService $nasaApiService): Response
+    {
+        $apods = $nasaApiService->getPictureOfDay();
+        return $this->render("apods.html.twig", ['apods' => $apods]);
     }
 }

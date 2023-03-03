@@ -16,5 +16,17 @@ app_homepage:
 create_post:
     path: /create-post
     controller: App\Controller\PostController::createPost
+#app_admin_page:
+#    path: manager/users-list
+#    controller: App\Controller\AdminController::adminpage
+#user_edit:
+#    path: /user/{id}/edit
+#    controller: App\Controller\AdminController::adminpage
+#user_delete:
+#    path: /admin/users/{id}/delete
+#    controller: App\Controller\AdminController::adminpage
+user_toggle:
+    path: /manager/users/{id}/ban
+    controller: App\Controller\AdminController::adminpage
 
 
