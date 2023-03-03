@@ -25,7 +25,7 @@
         font-size: 25px;
         position: absolute;
         border-radius: 20px;
-        display: flex;
+        display: none;
         flex-wrap: wrap;
         justify-content: center;
         flex-direction: column;
@@ -59,11 +59,13 @@
     .rover.is-selected {
         transform: scale(120%);
     }
+    .rover.is-selected .rover__description {
+        display: flex;
+    }
 
     .rover.is-selected img {
         box-shadow: rgba(255, 255, 255, 0.15) 0px 0px 15px;
         transform: scale(120%);
-
     }
 
     .rover.is-selected .rover__description {

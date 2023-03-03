@@ -1,0 +1,4 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'components/3D_model.html.twig' with {"container_width": 500, "container_height": 500, "model3D": 'curiosity.glb'} %}
+{% endblock %}

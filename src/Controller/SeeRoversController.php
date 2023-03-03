@@ -1,6 +1,6 @@
 <?php
 
-namespace templates;
+namespace App\Controller;
 
 use App\Services\DatabaseService;
 use App\Services\NasaApiService;
@@ -10,10 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SeeRoversController extends AbstractController
 {
-    #[Route('/see-rovers', name: 'see-rovers')]
+    #[Route('/seerovers', name: 'seerovers')]
     public function getSeeRoversPage(DatabaseService $databaseService, NasaApiService $nasaApiService): Response
     {
-        $databaseService->updateDatabase($nasaApiService->getAllRovers());
         return $this->render('see_rovers.html.twig', ['rovers'=>$databaseService->getAllRovers()]);
     }
 }
