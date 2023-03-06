@@ -28,6 +28,9 @@ class Post
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contentText = null;
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: File::class)]
+    #[MaxDepth(1)]
+    private Collection $files;
 
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likes')]
@@ -38,9 +41,6 @@ class Post
     #[ORM\OneToMany(mappedBy: 'postId', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: File::class)]
-    #[MaxDepth(1)]
-    private Collection $files;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;

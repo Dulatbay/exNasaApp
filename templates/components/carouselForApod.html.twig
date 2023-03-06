@@ -1,0 +1,55 @@
+<!-- Required dependencies for Bootstrap's JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+<div id="{{ id }}" class="carousel slide carousel-dark" >
+    <div class="carousel-indicators">
+        {% for index, apod in apods %}
+            <button type="button" data-bs-target="#{{ id }}" data-bs-slide-to="{{ index }}"
+                    {% if index == 0 %}
+                        class="active" aria-current="true"
+                    {% endif %} aria-label="Slide 1"></button>
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% for index, apod in apods %}
+            <div class="carousel-item {% if index == 0 %}active{% endif %}" data-bs-interval="10000">
+                <img src="{{ apod.url }}" class="d-block w-100 carousel-image" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ apod.title }}</h5>
+                    <p class="text-truncate">{{ apod.date }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#{{ id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Предыдущий</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#{{ id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Следующий</span>
+    </button>
+</div>
+<style>
+    .carousel {
+        height: 300px;
+        width: 300px;
+        color: var(--font-color);
+    }
+    .carousel-image {
+        object-fit: cover;
+        height: 400px;
+        width: 300px;
+        border-radius: 50px;
+    }
+
+    .carousel-caption h5, .carousel-caption p {
+        color: white;
+    }
+
+    .carousel-indicators button {
+        background: white;
+    }
+</style>

@@ -1,0 +1,54 @@
+<style>
+    .carousel {
+        height: 300px;
+        width: 300px;
+        color: var(--font-color);
+    }
+
+    .carousel-image {
+        object-fit: cover;
+        height: 400px;
+        width: 300px;
+        border-radius: 50px;
+    }
+
+    .carousel-caption h5, .carousel-caption p {
+        color: white;
+    }
+
+    .carousel-indicators button {
+        background: white;
+    }
+</style>
+<div id="{{ id }}" class="carousel carousel-dark slide">
+    <div class="carousel-indicators">
+        {% for i, v in objs %}
+            <button type="button" data-bs-target="#{{ id }}" data-bs-slide-to="{{ i }}" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% for index, i in rovers %}
+        {% if index == 0 %}
+        <div class="carousel-item active" data-bs-interval="10000">
+            {% else %}
+            <div class="carousel-item" data-bs-interval="10000">
+                {% endif %}
+                <img src="{{ i.url }}" class="d-block w-100 carousel-image" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ i.title }}</h5>
+                    <p>{{ i.date }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#{{ id }}" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#{{ id }}" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+        </button>
+    </div>
+</div>

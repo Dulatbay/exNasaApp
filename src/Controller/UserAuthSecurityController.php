@@ -37,9 +37,50 @@ class UserAuthSecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
             $checker->checkPreAuth($user);
-
             $authenticator->authenticateUser($user, $formLoginAuthenticator, $req);
             return $this->redirectToRoute('app_homepage');
+        }
+        return $this->render('register.html.twig', ['form' => $form->createView()]);
+    }
+    #[Route(path: '/register_admin', name: 'admin_app_register')]
+    function adminRegister(Security $security,Request $req, EntityManagerInterface $em, UserCheckerInterface $checker, UserAuthenticatorInterface $authenticator, UserPasswordHasherInterface $hasher, FormLoginAuthenticator $formLoginAuthenticator): Response
+    {
+        if($security->getUser()){
+            return $this->redirectToRoute('users-list');
+        }
+        $user = new User();
+        $form = $this->createForm(RegisterType::class, $user);
+        $form->handleRequest($req);
+        if ($form->isSubmitted()) {
+            $user->setPassword($hasher->hashPassword($user, $user->getPassword()));
+            $user->setRoles(["ROLE_USER", "ROLE_ADMIN", "ROLE_MANAGER"]);
+            $em->persist($user);
+            $em->flush();
+            $checker->checkPreAuth($user);
+
+            $authenticator->authenticateUser($user, $formLoginAuthenticator, $req);
+            return $this->redirectToRoute('users-list');
+        }
+        return $this->render('register.html.twig', ['form' => $form->createView()]);
+    }
+    #[Route(path: '/register_manager', name: 'manager_app_register')]
+    function managerRegister(Security $security,Request $req, EntityManagerInterface $em, UserCheckerInterface $checker, UserAuthenticatorInterface $authenticator, UserPasswordHasherInterface $hasher, FormLoginAuthenticator $formLoginAuthenticator): Response
+    {
+        if($security->getUser()){
+            return $this->redirectToRoute('users-list');
+        }
+        $user = new User();
+        $form = $this->createForm(RegisterType::class, $user);
+        $form->handleRequest($req);
+        if ($form->isSubmitted()) {
+            $user->setPassword($hasher->hashPassword($user, $user->getPassword()));
+            $user->setRoles(["ROLE_USER", "ROLE_MANAGER"]);
+            $em->persist($user);
+            $em->flush();
+            $checker->checkPreAuth($user);
+
+            $authenticator->authenticateUser($user, $formLoginAuthenticator, $req);
+            return $this->redirectToRoute('users-list');
         }
         return $this->render('register.html.twig', ['form' => $form->createView()]);
     }

@@ -60,7 +60,53 @@
         max-width: 100%;
         height: auto;
     }
+    .post-actions{
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
 
+    .post-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #555;
+    }
+
+    .post-action:hover {
+        color: #333;
+    }
+
+    .icon-like:before {
+        content: "\f004";
+        font-weight: 400;
+        font-family: "Font Awesome 5 Free";
+    }
+
+    .icon-unlike:before {
+        content: "\f004";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+    }
+
+    .icon-comment:before {
+        content: "\f27a";
+        font-family: "Font Awesome 5 Free";
+    }
+
+    .icon-share:before {
+        content: "\f064";
+        font-family: "Font Awesome 5 Free";
+    }
+
+    .post-action-count{
+        margin-left: 7px;
+    }
 </style>
 <div class="post homepage-item">
     <div class="post-header">
@@ -77,23 +123,40 @@
         <p>{{ post.contentText }}</p>
     </div>
     <div class="post-files">
-        {% for file in post.files %}
-            {% if file.getExtension() == 'jpg' or file.getExtension() == 'jpeg' or file.getExtension() == 'png' or file.getExtension() == 'gif' %}
-                <div class="image">
-                    <img src="{{ asset('uploads/' ~ file.name) }}" alt="{{ file.name }}">
-                </div>
-            {% else %}
-                <div class="file">
-                    <a href="{{ asset('uploads/' ~ file.name) }}" download>{{ file.name }}</a>
-                    <span class="file-extension">{{ file.getExtension() }}</span>
-                </div>
-            {% endif %}
-        {% endfor %}
+        <div class="post-files_images">
+            {# TODO: remake this wonderful thing #}
+            {% for file in post.files %}
+                {% if file.getExtension() == 'jpg' or file.getExtension() == 'jpeg' or file.getExtension() == 'png' or file.getExtension() == 'gif' %}
+                    <div class="image">
+                        <img src="{{ asset('uploads/' ~ file.name) }}" alt="{{ file.name }}">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="post-files_other">
+            {% for file in post.files %}
+                {% if file.getExtension() != 'jpg' and file.getExtension() != 'jpeg' and file.getExtension() != 'png' or file.getExtension() != 'gif' %}
+                    <div class="file">
+                        <a href="{{ asset('uploads/' ~ file.name) }}" download>{{ file.name }}</a>
+                        <span class="file-extension">{{ file.getExtension() }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
     <div class="post-actions">
-        <a href="#" class="post-action like">{{ post.likes|length }}</a>
-        <a href="#" class="post-action comment">{{ post.comments|length }}</a>
-        <a href="#" class="post-action share">Share</a>
+        <button class="post-action like" onclick="toggleLike(event)">
+            <span class="icon-like"></span>
+            <span class="like-count post-action-count">{{ post.likes|length }}</span>
+        </button>
+        <button class="post-action comment">
+            <span class="icon-comment"></span>
+            <span class="comment-count post-action-count">{{ post.comments|length }}</span>
+        </button>
+        <button class="post-action share">
+            <span class="icon-share post-action-count" ></span>
+            <span>Share</span>
+        </button>
     </div>
 </div>
 
@@ -112,5 +175,27 @@
         }
 
         return momentDate.format('MMMM Do YYYY, h:mm:ss a');
+    }
+
+    function toggleLike(event) {
+        const button = event.currentTarget;
+        const likeCount = button.querySelector('.like-count');
+        const icon = button.querySelector('span');
+        const postId = {{ post.id }};
+        event.preventDefault();
+        console.log(icon);
+        if (icon.classList.contains('icon-like')) {
+            icon.classList.remove('icon-like');
+            icon.classList.add('icon-unlike');
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            console.log("LIKE")
+            // Отправить запрос на сервер для добавления лайка
+        } else {
+            icon.classList.remove('icon-unlike');
+            icon.classList.add('icon-like');
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+            console.log("UNLIKE")
+            // Отправить запрос на сервер для удаления лайка
+        }
     }
 </script>
