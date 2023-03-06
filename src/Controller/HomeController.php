@@ -33,6 +33,8 @@ class HomeController extends AbstractController
     #[Route("/")]
     public function welcome(): Response
     {
+        $req = Request::createFromGlobals();
+        dump($req);
         return $this->render("welcome_page.html.twig");
     }
 
